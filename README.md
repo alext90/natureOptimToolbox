@@ -24,3 +24,11 @@ Test:
 ```
 make test
 ```
+
+#### ToDos:  
+- Tests
+- More algorithms:
+    - Cuckoo Search
+    - Bat Search
+- Refactoring (population and maybe individual)
+- More examples
