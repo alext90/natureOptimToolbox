@@ -1,16 +1,16 @@
 setup:
-	python3 -m venv myPythonTemplate
+	python3 -m venv natureOptimToolbox
 
 install:
-	. myPythonTemplate/bin/activate; \
+	. natureOptimToolbox/bin/activate; \
 	pip install -r requirements.txt
 
 run:
-	. myPythonTemplate/bin/activate; \
+	. natureOptimToolbox/bin/activate; \
 	python src/main.py
 
 test:
-	. myPythonTemplate/bin/activate; \
+	. natureOptimToolbox/bin/activate; \
 	pytest tests/
 
 .PHONY: setup install run test
