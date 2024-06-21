@@ -16,10 +16,6 @@ class ArtificialBeeColony:
         - n_generations: number of generations
         - error_tol: error tolerance
         - verbose: print information during optimization
-
-        Output:
-        - best_solution: best individual found
-        - best_fitness: best fitness found
         '''
 
         self.population = population

@@ -2,6 +2,7 @@ import numpy as np
 from population import Population
 from artifical_bee_colony import ArtificialBeeColony
 from cuckoo_search import CuckooSearch
+from bat_search import BatSearch
 
 # Minimize sphere function
 def objective_function(x):
@@ -31,8 +32,7 @@ if __name__ == "__main__":
                               n_generations,
                               error_tol=error_tol,
                               verbose=False
-                              )
-    
+                              )   
     best_solution, best_solution_fitness = abc.run()
     print(f"Best solution: {best_solution}")
     print(f"Best solution fitness: {best_solution_fitness}")
@@ -47,5 +47,26 @@ if __name__ == "__main__":
                       n_generations
                       )
     best_solution, best_solution_fitness = cs.run()
+    print(f"Best solution: {best_solution}")
+    print(f"Best solution fitness: {best_solution_fitness}")
+
+    # Parameters
+    f_min = 0           # Minimum frequency
+    f_max = 2           # Maximum frequency
+    A = 0.5             # Loudness
+    r = 0.5             # Pulse rate
+    alpha = 0.9         # Loudness reduction factor
+    gamma = 0.9         # Pulse rate increase factor
+    
+    bs = BatSearch(population,
+                   r,
+                   A,
+                   alpha,
+                   gamma,
+                   f_min,
+                   f_max,
+                   n_generations
+                   )
+    best_solution, best_solution_fitness = bs.run()
     print(f"Best solution: {best_solution}")
     print(f"Best solution fitness: {best_solution_fitness}")

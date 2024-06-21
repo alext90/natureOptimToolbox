@@ -3,6 +3,8 @@ A collection of nature inspired optimization algorithms.
 
 Implemented so far:  
 - Artificial Bee Colony  
+- Cuckoo Search  
+- Bat Search
 
 
 Setup venv:  
@@ -26,9 +28,8 @@ make test
 ```
 
 #### ToDos:  
-- Tests
 - More algorithms:
-    - Cuckoo Search
     - Bat Search
 - Refactoring (population and maybe individual)
 - More examples
+- Tests
