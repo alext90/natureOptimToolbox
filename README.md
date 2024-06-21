@@ -7,6 +7,7 @@ Implemented so far:
 - Bat Search
 - Firefly Search
 - Whale Optimization Algorithm  
+- Gray Wolf Optimizer
 
 Setup venv:  
 ```
@@ -71,6 +72,7 @@ result.plot_genotypic_diversity()
 ```
 
 ### ToDos:  
+- Refactor all methods into one optimizers.py
 - More algorithms:
     - Grey Wolf Optimizer
     - Dragonfly

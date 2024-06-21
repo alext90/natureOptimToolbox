@@ -1,13 +1,14 @@
-import numpy as np
+import copy
 
 from population import Population
-from artifical_bee_colony import ArtificialBeeColony
-from cuckoo_search import CuckooSearch
-from bat_search import BatSearch
-from firefly_search import FireflyAlgorithm
-from whale_optimization import WhaleOptimizationAlgorithm
-from grey_wolf import GrayWolfOptimizer
-
+from optimizers import (
+    ArtificialBeeColony, 
+    BatSearch, 
+    CuckooSearch, 
+    FireflyAlgorithm, 
+    WhaleOptimizationAlgorithm, 
+    GrayWolfOptimizer
+)
 from example_functions import sphere, rosenbrock
 
 if __name__ == "__main__":
@@ -16,7 +17,7 @@ if __name__ == "__main__":
     lb = -5                  
     ub = 5                   
 
-    objective_function = rosenbrock
+    objective_function = sphere
 
     # Generate a population
     population = Population(population_size, 
@@ -25,7 +26,9 @@ if __name__ == "__main__":
                             ub, 
                             objective_function
                             )
-    n_generations = 100   
+    
+    pop = copy.deepcopy(population)
+    n_generations = 1000
     error_tol = 0.01
     limit = 100    
                  
@@ -43,15 +46,9 @@ if __name__ == "__main__":
     #result.plot_phenotypic_diversity()
     #result.plot_genotypic_diversity()
 
+
     # Generate a population
-    population = Population(population_size, 
-                            dim_individual, 
-                            lb, 
-                            ub, 
-                            objective_function
-                            )
-    
-    ## Cuckoo Search Algorithm
+    pop = copy.deepcopy(population)    
     p_discovery = 0.25
     lambda_levy = 1.5
 
@@ -67,14 +64,7 @@ if __name__ == "__main__":
 
 
     # Generate a population
-    population = Population(population_size, 
-                            dim_individual, 
-                            lb, 
-                            ub, 
-                            objective_function
-                            )
-    
-    # Parameters
+    pop = copy.deepcopy(population)
     f_min = 0           # Minimum frequency
     f_max = 2           # Maximum frequency
     A = 0.5             # Loudness
@@ -96,15 +86,9 @@ if __name__ == "__main__":
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
 
-    # Generate a population
-    population = Population(population_size, 
-                            dim_individual, 
-                            lb, 
-                            ub, 
-                            objective_function
-                            )
 
-    # Parameters
+    # Generate a population
+    pop = copy.deepcopy(population)
     alpha = 0.5         # Randomness strength
     beta0 = 1           # Attraction coefficient base value
     gamma = 1           # Light absorption coefficient
@@ -119,37 +103,25 @@ if __name__ == "__main__":
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
 
-    # Generate a population
-    population = Population(population_size, 
-                            dim_individual, 
-                            lb, 
-                            ub, 
-                            objective_function
-                            )
 
+    # Generate a population
+    pop = copy.deepcopy(population)
     woa = WhaleOptimizationAlgorithm(population,
                                      n_generations,
                                      verbose=False,
                                      error_tol=error_tol
                                      )
-    
     result = woa.run()
     print("\nWhale Optimization Algorithm")
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
 
-    # Generate a population
-    population = Population(population_size, 
-                            dim_individual, 
-                            lb, 
-                            ub, 
-                            objective_function
-                            )
 
+    # Generate a population
+    pop = copy.deepcopy(population)
     gwo = GrayWolfOptimizer(population,
                             n_generations
                             )
-    
     result = gwo.run()
     print("\nGray Wolf Optimizer Algorithm")
     print(f"Best solution: {result.best_solution}")
