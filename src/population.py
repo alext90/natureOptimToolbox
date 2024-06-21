@@ -16,8 +16,14 @@ class Population:
         self.individuals = np.random.uniform(self.lb, self.ub, size=(self.population_size, self.dim_individuals))
         self.fitness = np.array([self.objective_function(self.individuals[i]) for i in range(self.population_size)])
 
-    def update_individual(self, new_fitness, new_solution, i: int):
+    def update_individual(self, new_fitness, new_solution: np.ndarray, i: int) -> None:
         '''Update individual if new fitness is better than the current fitness'''
+        if not isinstance(new_solution, np.ndarray):
+            raise TypeError('new_solution must be a numpy.ndarray')
+        
+        if not isinstance(new_fitness, (int, float)):
+            raise ValueError('new_fitness must be a number')
+
         if new_fitness < self.fitness[i]:
             self.individuals[i] = new_solution
             self.fitness[i] = new_fitness
