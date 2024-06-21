@@ -18,10 +18,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - None
 
-## [1.0.0] - 2018-07-28
+## [1.0.0] - 2024-06-221
 
 ### Added
-- Initial import
-
-[Unreleased]: https://github.com/AlexanderWillner/python-boilerplate/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/AlexanderWillner/python-boilerplate/releases/v1.0.0
+- Six differnt algorithms
+- BaseOptimizer class that all optimizers inherit from
+- Result class with basic plotting functions

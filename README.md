@@ -1,4 +1,5 @@
 # Nature Optim[ization] Toolbox
+## Overview
 A collection of nature inspired optimization algorithms. Every optimization algorithm inherits from the BaseOptimizer class using the step() function from each optimization algorithm.  
 
 Implemented so far:  
@@ -9,6 +10,8 @@ Implemented so far:
 - Whale Optimization Algorithm  
 - Gray Wolf Optimizer
 
+
+## Install
 Setup venv:  
 ```
 make setup
