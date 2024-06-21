@@ -72,7 +72,14 @@ class ArtificialBeeColony:
         self.population.fitness = new_fitness
 
 
-    def run(self) -> tuple:        
+    def run(self) -> tuple:     
+        '''
+        Run the Artificial Bee Colony algorithm and return the best solution and its fitness value.
+
+        Output:
+        - best_solution: Best solution found
+        - best_fitness: Fitness value of the best solution
+        '''   
         for t in range(self.n_generations):
             self.employed_bees_phase()
             self.onlooker_bees_phase()

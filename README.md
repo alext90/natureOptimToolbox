@@ -5,6 +5,7 @@ Implemented so far:
 - Artificial Bee Colony  
 - Cuckoo Search  
 - Bat Search
+- Firefly Search
 
 Setup venv:  
 ```

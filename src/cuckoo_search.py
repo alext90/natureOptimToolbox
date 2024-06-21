@@ -40,6 +40,10 @@ class CuckooSearch:
         '''
         Run cuckoo search
         A nest is a solution to the optimization problem and a individual in the population
+
+        Output:
+        - best_nest: Best solution found
+        - best_fitness: Fitness value of the best solution
         '''       
         # Find the current best solution
         best_nest_index, best_fitness = self.population.get_best_individual()
