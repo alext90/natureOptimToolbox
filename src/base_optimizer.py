@@ -46,6 +46,7 @@ class BaseOptimizer(ABC):
             if best_fitness < self.error_tol:
                 print(f"Converged at iteration {t+1}")
                 fitness_history = fitness_history[:t+1, :]
+                individual_history = individual_history[:t+1, :, :]
                 break
 
         result = Result(best_solution, 

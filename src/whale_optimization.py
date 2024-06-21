@@ -2,7 +2,8 @@ import numpy as np
 from base_optimizer import BaseOptimizer
 
 class WhaleOptimizationAlgorithm(BaseOptimizer):
-    def __init__(self, population, 
+    def __init__(self, 
+                 population, 
                  n_generations, 
                  verbose=False, 
                  error_tol: float = 1e-3

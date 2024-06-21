@@ -6,6 +6,7 @@ from cuckoo_search import CuckooSearch
 from bat_search import BatSearch
 from firefly_search import FireflyAlgorithm
 from whale_optimization import WhaleOptimizationAlgorithm
+from grey_wolf import GrayWolfOptimizer
 
 from example_functions import sphere, rosenbrock
 
@@ -26,7 +27,8 @@ if __name__ == "__main__":
                             )
     n_generations = 100   
     error_tol = 0.01
-    limit = 100                 
+    limit = 100    
+                 
     # Artificial Bee Colony Algorithm
     abc = ArtificialBeeColony(population, 
                               limit, 
@@ -38,8 +40,8 @@ if __name__ == "__main__":
     print("Artificial Bee Colony Algorithm")
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
-    result.plot_phenotypic_diversity()
-    result.plot_genotypic_diversity()
+    #result.plot_phenotypic_diversity()
+    #result.plot_genotypic_diversity()
 
     # Generate a population
     population = Population(population_size, 
@@ -133,5 +135,22 @@ if __name__ == "__main__":
     
     result = woa.run()
     print("\nWhale Optimization Algorithm")
+    print(f"Best solution: {result.best_solution}")
+    print(f"Best solution fitness: {result.best_fitness:.2f}")
+
+    # Generate a population
+    population = Population(population_size, 
+                            dim_individual, 
+                            lb, 
+                            ub, 
+                            objective_function
+                            )
+
+    gwo = GrayWolfOptimizer(population,
+                            n_generations
+                            )
+    
+    result = gwo.run()
+    print("\nGray Wolf Optimizer Algorithm")
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")

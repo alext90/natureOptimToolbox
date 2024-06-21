@@ -66,8 +66,8 @@ result = abc.run()
 print("Artificial Bee Colony Algorithm")
 print(f"Best solution: {result.best_solution}")
 print(f"Best solution fitness: {result.best_fitness:.2f}")
-    result.plot_phenotypic_diversity()
-    result.plot_genotypic_diversity()
+result.plot_phenotypic_diversity()
+result.plot_genotypic_diversity()
 ```
 
 ### ToDos:  
@@ -77,9 +77,5 @@ print(f"Best solution fitness: {result.best_fitness:.2f}")
     - Flower Pollination Algorithm
 
     - Simulated Annealing
-    - Genetic Algorithm
     - Particle Swarm Obtimization
-
-- Refactoring:
-    - Levy Flight outside of Cuckoo (e.g. utils.py)
-- Improve Readme
+    - Genetic Algorithm
