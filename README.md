@@ -34,10 +34,7 @@ make test
 import numpy as np
 from population import Population
 from artifical_bee_colony import ArtificialBeeColony
-
-# Minimize sphere function
-def objective_function(x):
-    return np.sum(x**2)
+from example_functions import sphere
 
 population_size = 25       
 dim_individual = 2          
@@ -47,6 +44,8 @@ ub = 5.12
 error_tol = 0.01
 limit = 100                 
 n_generations = 100         
+
+objective_function = sphere
 
 # Generate a population
 population = Population(population_size, 
@@ -67,7 +66,8 @@ result = abc.run()
 print("Artificial Bee Colony Algorithm")
 print(f"Best solution: {result.best_solution}")
 print(f"Best solution fitness: {result.best_fitness:.2f}")
-plot_fitness_history(result)
+    result.plot_phenotypic_diversity()
+    result.plot_genotypic_diversity()
 ```
 
 ### ToDos:  

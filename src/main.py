@@ -7,7 +7,7 @@ from bat_search import BatSearch
 from firefly_search import FireflyAlgorithm
 from whale_optimization import WhaleOptimizationAlgorithm
 
-from example_functions import sphere
+from example_functions import sphere, rosenbrock
 
 if __name__ == "__main__":
     population_size = 50       
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     lb = -5                  
     ub = 5                   
 
-    objective_function = sphere
+    objective_function = rosenbrock
 
     # Generate a population
     population = Population(population_size, 
@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
     woa = WhaleOptimizationAlgorithm(population,
                                      n_generations,
-                                     verbose=True,
+                                     verbose=False,
                                      error_tol=error_tol
                                      )
     
