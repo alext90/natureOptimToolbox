@@ -69,6 +69,16 @@ print(f"Best solution fitness: {best_solution_fitness}")
 
 ### ToDos:  
 - More algorithms:
-- Refactoring (Individual class)
+    - Grey Wolf Optimizer
+    - Whale Optimization Algorithm  
+    - Dragonfly
+    - Flower Pollination Algorithm
+
+    - Simulated Annealing
+    - Genetic Algorithm
+    - Particle Swarm Obtimization
+
+- Refactoring:
+    - Levy Flight outside of Cuckoo (e.g. utils.py)
 - Improve Readme
 - Tests

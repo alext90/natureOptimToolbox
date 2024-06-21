@@ -1,9 +1,12 @@
 import numpy as np
+
 from population import Population
 from artifical_bee_colony import ArtificialBeeColony
 from cuckoo_search import CuckooSearch
 from bat_search import BatSearch
 from firefly_search import FireflyAlgorithm
+
+from plotting_utils import plot_fitness_history
 
 # Minimize sphere function
 def objective_function(x):
@@ -34,10 +37,11 @@ if __name__ == "__main__":
                               error_tol=error_tol,
                               verbose=False
                               )   
-    best_solution, best_solution_fitness = abc.run()
-    print(f"Best solution: {best_solution}")
-    print(f"Best solution fitness: {best_solution_fitness}")
-
+    result = abc.run()
+    print("Artificial Bee Colony Algorithm")
+    print(f"Best solution: {result.best_solution}")
+    print(f"Best solution fitness: {result.best_fitness:.2f}")
+    #plot_fitness_history(result)
 
     ## Cuckoo Search Algorithm
     p_discovery = 0.25
@@ -48,9 +52,10 @@ if __name__ == "__main__":
                       lambda_levy,
                       n_generations
                       )
-    best_solution, best_solution_fitness = cs.run()
-    print(f"Best solution: {best_solution}")
-    print(f"Best solution fitness: {best_solution_fitness}")
+    result = cs.run()
+    print("\nCuckoo Search Algorithm")
+    print(f"Best solution: {result.best_solution}")
+    print(f"Best solution fitness: {result.best_fitness:.2f}")
 
 
     # Parameters
@@ -70,9 +75,11 @@ if __name__ == "__main__":
                    f_max,
                    n_generations
                    )
-    best_solution, best_solution_fitness = bs.run()
-    print(f"Best solution: {best_solution}")
-    print(f"Best solution fitness: {best_solution_fitness}")
+    result = bs.run()
+    print("\nBat Search Algorithm")
+    print(f"Best solution: {result.best_solution}")
+    print(f"Best solution fitness: {result.best_fitness:.2f}")
+    #plot_fitness_history(result)
 
     # Parameters
     alpha = 0.5         # Randomness strength
@@ -84,6 +91,7 @@ if __name__ == "__main__":
                           gamma,
                           n_generations
                           )
-    best_solution, best_solution_fitness = ff.run()
-    print(f"Best solution: {best_solution}")
-    print(f"Best solution fitness: {best_solution_fitness}")
+    result = ff.run()
+    print("\nFirefly Algorithm")
+    print(f"Best solution: {result.best_solution}")
+    print(f"Best solution fitness: {result.best_fitness:.2f}")

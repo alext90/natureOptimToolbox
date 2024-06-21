@@ -1,6 +1,8 @@
 import numpy as np
+from base_optimizer import BaseOptimizer
+from result import Result
 
-class CuckooSearch:
+class CuckooSearch(BaseOptimizer):
     def __init__(self, 
                  population, 
                  pa: float = 0.25, 
@@ -19,12 +21,9 @@ class CuckooSearch:
         - error_tol: error tolerance
         - verbose: print information during optimization     
         '''
-        self.population = population
-        self.pa = pa # probability of discovery
-        self.l = lambda_levy_flight # lambda for levy flight
-        self.n_iterations = n_generations
-        self.verbose = verbose
-        self.error_tol = error_tol
+        super().__init__(population, n_generations, error_tol, verbose)
+        self.pa = pa
+        self.l = lambda_levy_flight
 
     def levy_flight(self) -> np.array:
         '''Generate a Levy flight'''
@@ -36,7 +35,7 @@ class CuckooSearch:
         step = u / np.power(np.abs(v), 1 / self.l)
         return step   
     
-    def run(self) -> tuple:
+    def step(self, t):
         '''
         Run cuckoo search
         A nest is a solution to the optimization problem and a individual in the population
@@ -49,34 +48,24 @@ class CuckooSearch:
         best_nest_index, best_fitness = self.population.get_best_individual()
         best_nest = self.population.individuals[best_nest_index]
 
-        for t in range(self.n_iterations):
-            new_nests = np.copy(self.population.individuals)
-            
-            # Generate new solutions by Levy flight
-            for i in range(self.population.population_size):
-                step_size = self.levy_flight()
-                new_solution = self.population.individuals[i] + step_size * (self.population.individuals[i] - best_nest)
-                new_solution = np.clip(new_solution, self.population.lb, self.population.ub)
+        new_nests = np.copy(self.population.individuals)
+        
+        # Generate new solutions by Levy flight
+        for i in range(self.population.population_size):
+            step_size = self.levy_flight()
+            new_solution = self.population.individuals[i] + step_size * (self.population.individuals[i] - best_nest)
+            new_solution = np.clip(new_solution, self.population.lb, self.population.ub)
+            new_fitness = self.population.objective_function(new_solution)
+            self.population.update_individual(new_fitness, new_solution, i)
+
+        # Discovery and randomization
+        for i in range(self.population.population_size):
+            if np.random.rand() < self.pa:
+                new_solution = np.random.uniform(self.population.lb, self.population.ub, size=(self.population.dim_individuals,))
                 new_fitness = self.population.objective_function(new_solution)
                 self.population.update_individual(new_fitness, new_solution, i)
-
-            # Discovery and randomization
-            for i in range(self.population.population_size):
-                if np.random.rand() < self.pa:
-                    new_solution = np.random.uniform(self.population.lb, self.population.ub, size=(self.population.dim_individuals,))
-                    new_fitness = self.population.objective_function(new_solution)
-                    self.population.update_individual(new_fitness, new_solution, i)
-            
-            # Update the nests and best solution
-            nests = new_nests
-            best_nest_index, best_fitness = self.population.get_best_individual()
-            best_nest = nests[best_nest_index]
-
-            if self.verbose:
-                print(f"Iteration {t+1}, Best fitness: {best_fitness}")
-
-            if best_fitness < self.error_tol:
-                print(f"Converged at iteration {t+1}")
-                break
-
-        return best_nest, best_fitness
+        
+        # Update the nests and best solution
+        nests = new_nests
+        best_nest_index, best_fitness = self.population.get_best_individual()
+        best_nest = nests[best_nest_index]

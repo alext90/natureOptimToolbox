@@ -1,7 +1,9 @@
 import numpy as np
+from base_optimizer import BaseOptimizer
 from population import Population
+from result import Result
 
-class ArtificialBeeColony:
+class ArtificialBeeColony(BaseOptimizer):
     def __init__(self, population: Population,
                 limit: int,
                 n_generations: int = 100, 
@@ -17,12 +19,8 @@ class ArtificialBeeColony:
         - error_tol: error tolerance
         - verbose: print information during optimization
         '''
-
-        self.population = population
-        self.n_generations = n_generations
+        super().__init__(population, n_generations, error_tol, verbose)
         self.limit = limit
-        self.error_tol = error_tol
-        self.verbose = verbose
 
     def calc_new_inidividual(self, i: int, k: int):
         '''Calculate new individual using the formula: x_new = x + phi * (x - x_k)'''
@@ -72,28 +70,8 @@ class ArtificialBeeColony:
         self.population.fitness = new_fitness
 
 
-    def run(self) -> tuple:     
-        '''
-        Run the Artificial Bee Colony algorithm and return the best solution and its fitness value.
-
-        Output:
-        - best_solution: Best solution found
-        - best_fitness: Fitness value of the best solution
-        '''   
-        for t in range(self.n_generations):
-            self.employed_bees_phase()
-            self.onlooker_bees_phase()
-            self.scout_bees_phase()
-            
-            # Find the best solution
-            best_fitness = np.min(self.population.fitness)
-            best_solution = self.population.individuals[np.argmin(self.population.fitness)]
-
-            if self.verbose:    
-                print(f"Iteration {t+1}, Best fitness: {best_fitness}")
-        
-            if best_fitness < self.error_tol:
-                print(f"Converged at iteration {t+1}")
-                break
-
-        return best_solution, best_fitness
+    def step(self, t):
+        '''Optimization step'''
+        self.employed_bees_phase()
+        self.onlooker_bees_phase()
+        self.scout_bees_phase()
