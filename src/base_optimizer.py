@@ -19,10 +19,6 @@ class BaseOptimizer(ABC):
         """Perform a single optimization step and update the current solution."""
         pass
 
-    def evaluate_fitness(self, solution):
-        """Evaluate the fitness of a solution using the objective function."""
-        return self.objective_function(solution)
-
     def run(self):
         """Run the optimizer for a given number of iterations."""
         fitness_history = np.ndarray((self.n_generations, self.population.fitness.size))

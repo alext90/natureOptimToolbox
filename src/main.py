@@ -5,6 +5,7 @@ from artifical_bee_colony import ArtificialBeeColony
 from cuckoo_search import CuckooSearch
 from bat_search import BatSearch
 from firefly_search import FireflyAlgorithm
+from whale_optimization import WhaleOptimizationAlgorithm
 
 from plotting_utils import plot_fitness_history
 
@@ -93,5 +94,16 @@ if __name__ == "__main__":
                           )
     result = ff.run()
     print("\nFirefly Algorithm")
+    print(f"Best solution: {result.best_solution}")
+    print(f"Best solution fitness: {result.best_fitness:.2f}")
+
+    woa = WhaleOptimizationAlgorithm(population,
+                                     n_generations,
+                                     verbose=False,
+                                     error_tol=error_tol
+                                     )
+    
+    result = woa.run()
+    print("\nWhale Optimization Algorithm")
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")

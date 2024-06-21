@@ -6,6 +6,7 @@ Implemented so far:
 - Cuckoo Search  
 - Bat Search
 - Firefly Search
+- Whale Optimization Algorithm  
 
 Setup venv:  
 ```
@@ -70,7 +71,6 @@ print(f"Best solution fitness: {best_solution_fitness}")
 ### ToDos:  
 - More algorithms:
     - Grey Wolf Optimizer
-    - Whale Optimization Algorithm  
     - Dragonfly
     - Flower Pollination Algorithm
 
