@@ -1,5 +1,5 @@
 import numpy as np
-from population import Population
+from src.population import Population
 
 class Result:
     def __init__(self, 

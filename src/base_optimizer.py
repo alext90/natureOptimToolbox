@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import numpy as np
-from population import Population
-from result import Result
+from src.population import Population
+from src.result import Result
 
 class BaseOptimizer(ABC):
     def __init__(self, 
@@ -9,6 +9,13 @@ class BaseOptimizer(ABC):
                 n_generations: int, 
                 error_tol=1e-6, 
                 verbose=False):
+        
+        if not isinstance(population, Population):
+            raise ValueError("population must be an instance of Population")
+
+        if not isinstance(n_generations, int):
+            raise ValueError("n_generations must be an integer")
+
         self.population = population
         self.n_generations = n_generations
         self.error_tol = error_tol

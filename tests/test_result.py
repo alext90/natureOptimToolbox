@@ -4,9 +4,8 @@ from src.result import Result
 
 def test_result_inputs():
     with pytest.raises(ValueError):
-        Result("best_solution", 1, 1)
-        Result(np.array([1, 2, 3]), "best_fitness", 1)
-        Result(np.array([1, 2, 3]), 1, "n_iteration")
-        Result(np.array([1, 2, 3]), 1, 1.0)
-        Result(np.array([1, 2, 3]), 1.0, 1)
-        Result(np.array([1, 2, 3]), 1, 1)
+        Result("best_solution", 1, 1, None)
+    with pytest.raises(ValueError):
+        Result(np.array([1, 2]), "best_fitness", 1, None)
+    with pytest.raises(ValueError):
+        Result(np.array([1, 2]), 1, "n_iteration", None)

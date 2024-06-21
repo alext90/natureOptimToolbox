@@ -58,14 +58,16 @@ population = Population(population_size,
 
 # Artificial Bee Colony Algorithm
 abc = ArtificialBeeColony(population, 
-                          limit, 
-                          n_generations,
-                          error_tol=error_tol,
-                          verbose=False
-                          )   
-best_solution, best_solution_fitness = abc.run()
-print(f"Best solution: {best_solution}")
-print(f"Best solution fitness: {best_solution_fitness}")
+                            limit, 
+                            n_generations,
+                            error_tol=error_tol,
+                            verbose=False
+                            )   
+result = abc.run()
+print("Artificial Bee Colony Algorithm")
+print(f"Best solution: {result.best_solution}")
+print(f"Best solution fitness: {result.best_fitness:.2f}")
+plot_fitness_history(result)
 ```
 
 ### ToDos:  
@@ -81,4 +83,3 @@ print(f"Best solution fitness: {best_solution_fitness}")
 - Refactoring:
     - Levy Flight outside of Cuckoo (e.g. utils.py)
 - Improve Readme
-- Tests
