@@ -13,6 +13,22 @@ class BatSearch():
                  error_tol=0.01, 
                  verbose=False
                  ):
+        '''
+        Bat search algorithm class
+
+        Input:
+        - population: Population object
+        - velocities: Velocities of the individuals
+        - r: Pulse rate
+        - A: Loudness
+        - alpha: Loudness decay
+        - gamma: Pulse rate decay
+        - f_min: Minimum frequency
+        - f_max: Maximum frequency
+        - n_generations: Number of generations
+        - error_tol: Error tolerance
+        - verbose: Print information about the optimization process
+        '''
         self.population = population
         self.velocities = np.zeros((self.population.population_size, self.population.dim_individuals))
         self.r = r
@@ -25,8 +41,14 @@ class BatSearch():
         self.error_tol = error_tol
         self.verbose = verbose
 
-    # Bat Algorithm (n, dim, lb, ub, f_min, f_max, A, r, alpha, gamma, n_iterations):
     def run(self) -> tuple:
+        '''
+        Run the Bat Search algorithm and return the best solution and its fitness value.
+        
+        Output:
+        - best_solution: Best solution found
+        - best_fitness: Fitness value of the best solution
+        '''
         best_index, best_fitness = self.population.get_best_individual()
         best_solution = self.population.individuals[best_index]
 

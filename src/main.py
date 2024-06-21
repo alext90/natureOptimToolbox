@@ -3,6 +3,7 @@ from population import Population
 from artifical_bee_colony import ArtificialBeeColony
 from cuckoo_search import CuckooSearch
 from bat_search import BatSearch
+from firefly_search import FireflyAlgorithm
 
 # Minimize sphere function
 def objective_function(x):
@@ -37,6 +38,7 @@ if __name__ == "__main__":
     print(f"Best solution: {best_solution}")
     print(f"Best solution fitness: {best_solution_fitness}")
 
+
     ## Cuckoo Search Algorithm
     p_discovery = 0.25
     lambda_levy = 1.5
@@ -49,6 +51,7 @@ if __name__ == "__main__":
     best_solution, best_solution_fitness = cs.run()
     print(f"Best solution: {best_solution}")
     print(f"Best solution fitness: {best_solution_fitness}")
+
 
     # Parameters
     f_min = 0           # Minimum frequency
@@ -68,5 +71,19 @@ if __name__ == "__main__":
                    n_generations
                    )
     best_solution, best_solution_fitness = bs.run()
+    print(f"Best solution: {best_solution}")
+    print(f"Best solution fitness: {best_solution_fitness}")
+
+    # Parameters
+    alpha = 0.5         # Randomness strength
+    beta0 = 1           # Attraction coefficient base value
+    gamma = 1           # Light absorption coefficient
+    ff = FireflyAlgorithm(population,
+                          alpha,
+                          beta0,
+                          gamma,
+                          n_generations
+                          )
+    best_solution, best_solution_fitness = ff.run()
     print(f"Best solution: {best_solution}")
     print(f"Best solution fitness: {best_solution_fitness}")
