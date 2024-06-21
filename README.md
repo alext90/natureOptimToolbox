@@ -1,5 +1,5 @@
 # Nature Optim[ization] Toolbox
-A collection of nature inspired optimization algorithms.  
+A collection of nature inspired optimization algorithms. Every optimization algorithm inherits from the BaseOptimizer class using the step() function from each optimization algorithm.  
 
 Implemented so far:  
 - Artificial Bee Colony  

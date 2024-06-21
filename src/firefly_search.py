@@ -1,6 +1,5 @@
 import numpy as np
 from base_optimizer import BaseOptimizer
-from result import Result
 
 class FireflyAlgorithm(BaseOptimizer):
     def __init__(self, 
@@ -12,7 +11,11 @@ class FireflyAlgorithm(BaseOptimizer):
                  error_tol=0.01,
                  verbose=False
                  ):
-        super().__init__(population, n_generation, error_tol, verbose)
+        super().__init__(population, 
+                         n_generation, 
+                         "FireflyAlgorithm",
+                         error_tol, 
+                         verbose)
         self.alpha = alpha
         self.beta0 = beta0
         self.gamma = gamma

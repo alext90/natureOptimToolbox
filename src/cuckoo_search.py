@@ -1,6 +1,5 @@
 import numpy as np
 from base_optimizer import BaseOptimizer
-from result import Result
 
 class CuckooSearch(BaseOptimizer):
     def __init__(self, 
@@ -21,7 +20,11 @@ class CuckooSearch(BaseOptimizer):
         - error_tol: error tolerance
         - verbose: print information during optimization     
         '''
-        super().__init__(population, n_generations, error_tol, verbose)
+        super().__init__(population, 
+                         n_generations, 
+                         "CuckooSearch",
+                         error_tol, 
+                         verbose)
         self.pa = pa
         self.l = lambda_levy_flight
 

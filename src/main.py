@@ -7,21 +7,15 @@ from bat_search import BatSearch
 from firefly_search import FireflyAlgorithm
 from whale_optimization import WhaleOptimizationAlgorithm
 
-from plotting_utils import plot_fitness_history
-
-# Minimize sphere function
-def objective_function(x):
-    return np.sum(x**2)
+from example_functions import sphere
 
 if __name__ == "__main__":
-    population_size = 25       
-    dim_individual = 2          
-    lb = -5.12                  
-    ub = 5.12                   
+    population_size = 50       
+    dim_individual = 3      
+    lb = -5                  
+    ub = 5                   
 
-    error_tol = 0.01
-    limit = 100                 
-    n_generations = 100         
+    objective_function = sphere
 
     # Generate a population
     population = Population(population_size, 
@@ -30,7 +24,9 @@ if __name__ == "__main__":
                             ub, 
                             objective_function
                             )
-
+    n_generations = 100   
+    error_tol = 0.01
+    limit = 100                 
     # Artificial Bee Colony Algorithm
     abc = ArtificialBeeColony(population, 
                               limit, 
@@ -42,8 +38,17 @@ if __name__ == "__main__":
     print("Artificial Bee Colony Algorithm")
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
-    #plot_fitness_history(result)
+    result.plot_phenotypic_diversity()
+    result.plot_genotypic_diversity()
 
+    # Generate a population
+    population = Population(population_size, 
+                            dim_individual, 
+                            lb, 
+                            ub, 
+                            objective_function
+                            )
+    
     ## Cuckoo Search Algorithm
     p_discovery = 0.25
     lambda_levy = 1.5
@@ -59,6 +64,14 @@ if __name__ == "__main__":
     print(f"Best solution fitness: {result.best_fitness:.2f}")
 
 
+    # Generate a population
+    population = Population(population_size, 
+                            dim_individual, 
+                            lb, 
+                            ub, 
+                            objective_function
+                            )
+    
     # Parameters
     f_min = 0           # Minimum frequency
     f_max = 2           # Maximum frequency
@@ -80,7 +93,14 @@ if __name__ == "__main__":
     print("\nBat Search Algorithm")
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
-    #plot_fitness_history(result)
+
+    # Generate a population
+    population = Population(population_size, 
+                            dim_individual, 
+                            lb, 
+                            ub, 
+                            objective_function
+                            )
 
     # Parameters
     alpha = 0.5         # Randomness strength
@@ -97,9 +117,17 @@ if __name__ == "__main__":
     print(f"Best solution: {result.best_solution}")
     print(f"Best solution fitness: {result.best_fitness:.2f}")
 
+    # Generate a population
+    population = Population(population_size, 
+                            dim_individual, 
+                            lb, 
+                            ub, 
+                            objective_function
+                            )
+
     woa = WhaleOptimizationAlgorithm(population,
                                      n_generations,
-                                     verbose=False,
+                                     verbose=True,
                                      error_tol=error_tol
                                      )
     

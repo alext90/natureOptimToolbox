@@ -15,7 +15,11 @@ class WhaleOptimizationAlgorithm(BaseOptimizer):
         - n_generations: Number of iterations
         - verbose: Print information about the optimization process
         '''
-        super().__init__(population, n_generations, error_tol, verbose)
+        super().__init__(population, 
+                         n_generations, 
+                         "WhaleOptimizationAlgorithm",
+                         error_tol, 
+                         verbose)
 
 
     def step(self, t):

@@ -1,7 +1,6 @@
 import numpy as np
 from base_optimizer import BaseOptimizer
 from population import Population
-from result import Result
 
 class ArtificialBeeColony(BaseOptimizer):
     def __init__(self, population: Population,
@@ -19,7 +18,11 @@ class ArtificialBeeColony(BaseOptimizer):
         - error_tol: error tolerance
         - verbose: print information during optimization
         '''
-        super().__init__(population, n_generations, error_tol, verbose)
+        super().__init__(population, 
+                         n_generations, 
+                         "ArtificialBeeColony",
+                         error_tol, 
+                         verbose)
         self.limit = limit
 
     def calc_new_inidividual(self, i: int, k: int):
@@ -64,7 +67,7 @@ class ArtificialBeeColony(BaseOptimizer):
                 new_solution = np.random.uniform(self.population.lb, self.population.ub,
                                                  size=(self.population.dim_individuals,))
                 new_population[i] = new_solution
-                new_fitness[i] = self.objective_function(new_solution)
+                new_fitness[i] = self.population.objective_function(new_solution)
         
         self.population.individuals = new_population
         self.population.fitness = new_fitness

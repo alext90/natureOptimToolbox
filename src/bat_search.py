@@ -1,6 +1,5 @@
 import numpy as np
 from base_optimizer import BaseOptimizer
-from result import Result
 
 class BatSearch(BaseOptimizer):
     def __init__(self, 
@@ -31,7 +30,11 @@ class BatSearch(BaseOptimizer):
         - error_tol: Error tolerance
         - verbose: Print information about the optimization process
         '''
-        super().__init__(population, n_generations, error_tol, verbose)
+        super().__init__(population, 
+                         n_generations, 
+                         "BatSearch",
+                         error_tol, 
+                         verbose)
         self.velocities = np.zeros((self.population.population_size, self.population.dim_individuals))
         self.r = r
         self.A = A

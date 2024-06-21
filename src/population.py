@@ -14,7 +14,7 @@ class Population:
         self.ub = ub
         self.objective_function = objective_function
         self.individuals = np.random.uniform(self.lb, self.ub, size=(self.population_size, self.dim_individuals))
-        self.fitness = np.array([self.objective_function(self.individuals[i]) for i in range(self.population_size)])
+        self.fitness = np.array([self.objective_function(ind) for ind in self.individuals])
 
     def update_individual(self, new_fitness, new_solution: np.ndarray, i: int) -> None:
         '''Update individual if new fitness is better than the current fitness'''
