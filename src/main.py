@@ -1,6 +1,7 @@
 import numpy as np
-from artifical_bee_colony import ArtificialBeeColony
 from population import Population
+from artifical_bee_colony import ArtificialBeeColony
+from cuckoo_search import CuckooSearch
 
 # Minimize sphere function
 def objective_function(x):
@@ -16,7 +17,7 @@ if __name__ == "__main__":
     limit = 100                 
     n_generations = 100         
 
-    # Artificial Bee Colony Algorithm
+    # Generate a population
     population = Population(population_size, 
                             dim_individual, 
                             lb, 
@@ -24,6 +25,7 @@ if __name__ == "__main__":
                             objective_function
                             )
 
+    # Artificial Bee Colony Algorithm
     abc = ArtificialBeeColony(population, 
                               limit, 
                               n_generations,
@@ -32,5 +34,18 @@ if __name__ == "__main__":
                               )
     
     best_solution, best_solution_fitness = abc.run()
+    print(f"Best solution: {best_solution}")
+    print(f"Best solution fitness: {best_solution_fitness}")
+
+    ## Cuckoo Search Algorithm
+    p_discovery = 0.25
+    lambda_levy = 1.5
+
+    cs = CuckooSearch(population,
+                      p_discovery,
+                      lambda_levy,
+                      n_generations
+                      )
+    best_solution, best_solution_fitness = cs.run()
     print(f"Best solution: {best_solution}")
     print(f"Best solution fitness: {best_solution_fitness}")

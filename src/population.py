@@ -16,3 +16,13 @@ class Population:
         self.individuals = np.random.uniform(self.lb, self.ub, size=(self.population_size, self.dim_individuals))
         self.fitness = np.array([self.objective_function(self.individuals[i]) for i in range(self.population_size)])
 
+    def update_individual(self, new_fitness, new_solution, i: int):
+        '''Update individual if new fitness is better than the current fitness'''
+        if new_fitness < self.fitness[i]:
+            self.individuals[i] = new_solution
+            self.fitness[i] = new_fitness
+
+    def get_best_individual(self) -> tuple:
+        '''Return the best individual and its fitness'''
+        best_index = np.argmin(self.fitness)
+        return best_index, self.fitness[best_index]

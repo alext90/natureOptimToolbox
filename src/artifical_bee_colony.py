@@ -8,6 +8,19 @@ class ArtificialBeeColony:
                 error_tol: float = 1e-6,
                 verbose: bool = False,
                 ) -> None:
+        '''
+        Artificial Bee Colony Optimization
+        Input:
+        - population: Population object
+        - limit: limit for the number of trials
+        - n_generations: number of generations
+        - error_tol: error tolerance
+        - verbose: print information during optimization
+
+        Output:
+        - best_solution: best individual found
+        - best_fitness: best fitness found
+        '''
 
         self.population = population
         self.n_generations = n_generations
@@ -23,12 +36,6 @@ class ArtificialBeeColony:
         new_fitness = self.population.objective_function(new_solution)
         return new_fitness, new_solution
 
-    def update_individual(self, new_fitness, new_solution, i: int):
-        '''Update individual if new fitness is better than the current fitness'''
-        if new_fitness < self.population.fitness[i]:
-            self.population.individuals[i] = new_solution
-            self.population.fitness[i] = new_fitness
-
     def employed_bees_phase(self):
         '''Employed Bees Phase'''
         for i in range(self.population.dim_individuals):
@@ -37,7 +44,7 @@ class ArtificialBeeColony:
                 k = np.random.randint(0, self.population.dim_individuals)
             
             new_fitness, new_solution = self.calc_new_inidividual(i, k)
-            self.update_individual(new_fitness, new_solution, i)
+            self.population.update_individual(new_fitness, new_solution, i)
 
     def onlooker_bees_phase(self):
         '''Onlooker Bees Phase'''
@@ -51,7 +58,7 @@ class ArtificialBeeColony:
                 k = np.random.randint(0, self.population.dim_individuals)
             
             new_fitness, new_solution = self.calc_new_inidividual(i, k)
-            self.update_individual(new_fitness, new_solution, i)
+            self.population.update_individual(new_fitness, new_solution, i)
     
     def scout_bees_phase(self):
         '''Scout Bees Phase'''
