@@ -75,7 +75,6 @@ result.plot_genotypic_diversity()
 ```
 
 ### ToDos:  
-- Refactor all methods into one optimizers.py
 - More algorithms:
     - Grey Wolf Optimizer
     - Dragonfly
