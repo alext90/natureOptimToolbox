@@ -76,7 +76,6 @@ result.plot_genotypic_diversity()
 
 ### ToDos:  
 - More algorithms:
-    - Grey Wolf Optimizer
     - Dragonfly
     - Flower Pollination Algorithm
 
